@@ -10,6 +10,28 @@ type Props = {
     params: Promise<{ slug: string[] }>
 }
 
+export async function generateMetadata({ params }: Props) {
+    const { slug } = await params
+    const tag = slug[0]
+    return {
+        title: `Notes:${tag}`,
+        description: `You are looking at ${tag} notes`,
+        openGraph: {
+            title: `Notes:${tag}`,
+            description: `Notes with this tag:${tag}`,
+            url: `https://08-zustand-ten-ochre.vercel.app/notes/filter/${tag}`,
+            images: [
+                {
+                    url: 'https://placehold.co/1200x630',
+                    width: 1200,
+                    height: 630,
+                    alt: 'NoteHub',
+                },
+            ],
+        },
+    }
+}
+
 async function Notes({ params }: Props) {
     const { slug } = await params
     const tag = slug[0] === 'All' ? undefined : slug[0]

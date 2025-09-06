@@ -18,7 +18,6 @@ const SingleNotePreview = async ({ params }: Props) => {
         queryKey: ['notes', id],
         queryFn: () => getNoteById(id),
     })
-    // const note = await getNoteById(id)
 
     return (
         <>

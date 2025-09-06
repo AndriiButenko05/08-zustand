@@ -1,8 +1,8 @@
 import { getTags } from '@/lib/api'
 import css from './Sidebar.module.css'
 import Link from 'next/link'
-export default async function Sidebar() {
-    const tags = await getTags()
+export default function Sidebar() {
+    const tags = getTags()
     return (
         <ul className={css.menuList}>
             <li className={css.menuItem}>

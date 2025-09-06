@@ -28,7 +28,7 @@ export async function fetchNotes(
     return response.data
 }
 
-interface CreateNote {
+export interface CreateNote {
     title: string
     content: string
     tag: string
