@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props) {
         openGraph: {
             title: `${note.title}`,
             description: `${note.content}`,
-            url: `https://08-zustand-ten-ochre.vercel.app/notes/${id}`,
+            url: `https://08-zustand-tau-kohl.vercel.app/notes/${id}`,
             images: [
                 {
                     url: 'https://placehold.co/1200x630',

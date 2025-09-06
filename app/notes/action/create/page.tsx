@@ -8,7 +8,7 @@ export function generateMetadata() {
         openGraph: {
             title: `Create Note`,
             description: `Create New Note`,
-            url: 'https://08-zustand-ten-ochre.vercel.app/notes/action/create',
+            url: 'https://08-zustand-tau-kohl.vercel.app/notes/action/create',
             images: [
                 {
                     url: 'https://placehold.co/1200x630',
