@@ -11,7 +11,7 @@ type NoteDraftStore = {
 const initialDraft: CreateNote = {
     title: '',
     content: '',
-    tag: '',
+    tag: 'Todo',
 }
 
 export const useNoteDraftStore = create<NoteDraftStore>()(
@@ -26,6 +26,7 @@ export const useNoteDraftStore = create<NoteDraftStore>()(
         }),
         {
             name: 'note-draft',
+            partialize: (state) => ({ draft: state.draft }),
         }
     )
 )

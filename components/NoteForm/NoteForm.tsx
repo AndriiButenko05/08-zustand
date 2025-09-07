@@ -1,7 +1,7 @@
 'use client'
 
 import css from './NoteForm.module.css'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { CreateNote, createNote, getTags } from '../../lib/api'
 import { useRouter } from 'next/navigation'
 import { useNoteDraftStore } from '@/lib/store/noteStore'
@@ -11,6 +11,7 @@ export default function NoteForm() {
     const router = useRouter()
     const goBack = () => router.back()
     const { draft, setDraft, clearDraft } = useNoteDraftStore()
+    const queryClient = useQueryClient()
     const handleChange = (
         event: React.ChangeEvent<
             HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -24,6 +25,7 @@ export default function NoteForm() {
     const { mutate } = useMutation({
         mutationFn: createNote,
         onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['notes'] })
             clearDraft()
             router.back()
         },
@@ -42,7 +44,7 @@ export default function NoteForm() {
                     name="title"
                     className={css.input}
                     onChange={handleChange}
-                    defaultValue={draft?.title}
+                    value={draft?.title}
                 />
             </div>
 
@@ -53,17 +55,13 @@ export default function NoteForm() {
                     name="content"
                     className={css.textarea}
                     onChange={handleChange}
-                    defaultValue={draft?.content}
+                    value={draft?.content}
                 />
             </div>
 
             <div className={css.formGroup}>
                 <label htmlFor="tag">Tag</label>
-                <select
-                    name="tag"
-                    defaultValue={draft?.tag}
-                    onChange={handleChange}
-                >
+                <select name="tag" value={draft?.tag} onChange={handleChange}>
                     {tags.map((tag) => (
                         <option key={tag} value={tag} defaultValue={draft?.tag}>
                             {tag}

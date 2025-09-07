@@ -1,7 +1,8 @@
-import CreateNote from './CreateNote.client'
+import { Metadata } from 'next'
 import css from './page.module.css'
+import NoteForm from '@/components/NoteForm/NoteForm'
 
-export function generateMetadata() {
+export function generateMetadata(): Metadata {
     return {
         title: `Create Note`,
         description: `Create New Note`,
@@ -21,12 +22,12 @@ export function generateMetadata() {
     }
 }
 
-export default function page() {
+export default function Page() {
     return (
         <main className={css.main}>
             <div className={css.container}>
                 <h1 className={css.title}>Create note</h1>
-                {<CreateNote></CreateNote>}
+                {<NoteForm></NoteForm>}
             </div>
         </main>
     )
